@@ -7,7 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -20,50 +19,47 @@ enum RadioImages { pizza, burger, drink }
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   final TextEditingController _editTextController = TextEditingController();
-
   RadioImages _images = RadioImages.pizza;
-
   final ScrollController _scrollController = ScrollController();
   Widget getImage() {
     if (_images == RadioImages.pizza) {
       return SizedBox(
-        child: Image.network(
-            "https://media.istockphoto.com/photos/cheesy-pepperoni-pizza-picture-id938742222"),
         height: 80,
         width: 80,
+        child: Image.network(
+            "https://st.depositphotos.com/1003814/5052/i/950/depositphotos_50523105-stock-photo-pizza-with-tomatoes.jpg"),
       );
     } else if (_images == RadioImages.burger) {
       return SizedBox(
-        child: Image.network(
-            "https://media.istockphoto.com/photos/cheeseburger-with-tomato-and-lettuce-on-wooden-board-picture-id1309352410"),
         height: 80,
         width: 80,
+        child: Image.network(
+            "https://media.istockphoto.com/photos/cheeseburger-with-tomato-and-lettuce-on-wooden-board-picture-id1309352410?s=2048x2048"),
       );
     } else {
       return SizedBox(
-        child: Image.network(
-            "https://5.imimg.com/data5/TN/OQ/WK/SELLER-59902063/coca-cola-coldrink-500x500.jpg"),
         height: 80,
         width: 80,
+        child: Image.network(
+            "https://www.bigbasket.com/media/uploads/p/xxl/40216379_1-pepsi-soft-drink.jpg"),
       );
     }
   }
 
-  final List<String> countryList = ["India", "Africa", "Ice land"];
-  final List<String> stateList = ["Goa", "Bihar", "Karnataka", "UP"];
-  final List<String> cityList = ["Patna", "Bangalore", "Belguam", "Munger"];
+  final List<String> countryList = ["India", "Africa",];
+  List<String> stateList = [];
+  List<String> cityList = [];
   String? country;
   String? state;
-  String? city;
-  double rating=0;
 
+  String? city;
+  double rating = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,14 +69,13 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               children: [
-                const Text("1AY18CS073",style: TextStyle(fontSize: 30),),
                 Column(
                   children: [
-                    const Text("Scroll bar"),
+                    const Text("Text input field with scrollbar"),
                     Container(
-                      height: 200,
+                      height: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.redAccent, width: 4),
+                        border: Border.all(color: Colors.blueGrey, width: 2),
                       ),
                       child: Center(
                         child: Scrollbar(
@@ -112,7 +107,7 @@ class _HomeState extends State<Home> {
                 Container(
                   height: 200,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.yellow, width: 4),
+                    border: Border.all(color: Colors.pink, width: 2),
                   ),
                   child: Column(
                     children: [
@@ -177,7 +172,7 @@ class _HomeState extends State<Home> {
                 Container(
                   height: 100,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueGrey, width: 4),
+                    border: Border.all(color: Colors.blueGrey, width: 2),
                   ),
                   child: Column(
                     children: [
@@ -203,6 +198,12 @@ class _HomeState extends State<Home> {
                               onChanged: (value) {
                                 setState(() {
                                   country = value;
+                                  if(value=="India"){
+                                    stateList=["Bihar", "Karnataka"];
+                                  }
+                                  else{
+                                    stateList=["Nigeria"];
+                                  }
                                 });
                               },
                             ),
@@ -225,6 +226,15 @@ class _HomeState extends State<Home> {
                               onChanged: (value) {
                                 setState(() {
                                   state = value;
+                                  if(value=="Bihar"){
+                                    cityList=["Patna"];
+                                  }
+                                  else if(value=="Karnataka"){
+                                    cityList=["Bangalore"];
+                                  }
+                                  else{
+                                    cityList=["Lagos"];
+                                  }
                                 });
                               },
                             ),
@@ -260,17 +270,16 @@ class _HomeState extends State<Home> {
                   height: 100,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.purple, width: 4),
+                    border: Border.all(color: Colors.purple, width: 2),
                   ),
                   child: Column(
                     children: [
-                      const Text("Tooltip implementation"),
+                      const Text("Tooltip"),
                       Tooltip(
-                        message: 'Let me help you',
+                        message: 'This is a Tool Tip button',
                         child: IconButton(
                           icon: const Icon(Icons.help),
                           onPressed: () {
-                            /* your code */
                           },
                         ),
                       ),
@@ -281,7 +290,7 @@ class _HomeState extends State<Home> {
                   height: 100,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.purple, width: 4),
+                    border: Border.all(color: Colors.purple, width: 2),
                   ),
                   child: Column(
                     children: [
@@ -289,14 +298,12 @@ class _HomeState extends State<Home> {
                       Row(
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                              border: Border.all()
-                            ),
+                            decoration: BoxDecoration(border: Border.all()),
                             width: 100,
                             child: TextFormField(
-                              onChanged: (value){
+                              onChanged: (value) {
                                 setState(() {
-                                  rating=double.parse(value);
+                                  rating = double.parse(value);
                                 });
                               },
                             ),
@@ -310,11 +317,10 @@ class _HomeState extends State<Home> {
                             itemPadding:
                                 const EdgeInsets.symmetric(horizontal: 4.0),
                             itemBuilder: (context, _) => const Icon(
-                              Icons.favorite,
+                              Icons.star,
                               color: Colors.amber,
                             ),
-                            onRatingUpdate: (rating) {
-                            },
+                            onRatingUpdate: (rating) {},
                           )
                         ],
                       ),
